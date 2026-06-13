@@ -1,0 +1,9 @@
+provider: openai_compatible
+api_base: https://api.deepseek.com
+model_id: deepseek-v4-flash
+api_key_env: DEEPSEEK_API_KEY
+temperature: 0.25
+max_tokens: 4096
+timeout: 120
+reasoning_effort: medium
+enable_llm: true

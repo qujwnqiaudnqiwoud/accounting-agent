@@ -1,0 +1,132 @@
+[
+  {
+    "order": 1,
+    "tool_name": "llm_model",
+    "action": "加载大模型 API 配置",
+    "input_summary": "openai_compatible/deepseek-v4-flash",
+    "output_summary": "未配置 DEEPSEEK_API_KEY，将使用 Python fallback pipeline。",
+    "status": "完成",
+    "elapsed_seconds": 0.0,
+    "error": ""
+  },
+  {
+    "order": 2,
+    "tool_name": "main_agent",
+    "action": "smolagents 主控 Agent 规划工具调度",
+    "input_summary": "标准财务数据 + 可选 PDF",
+    "output_summary": "未配置 API Key，使用固定工具链完成分析。",
+    "status": "完成",
+    "elapsed_seconds": 0.0,
+    "error": ""
+  },
+  {
+    "order": 3,
+    "tool_name": "file_loader",
+    "action": "读取标准财务数据 CSV/Excel",
+    "input_summary": "outputs/real_case/keda_xunfei_2025/extracted_financial_data.xlsx",
+    "output_summary": "读取 15 行、3 列。",
+    "status": "完成",
+    "elapsed_seconds": 0.003,
+    "error": ""
+  },
+  {
+    "order": 4,
+    "tool_name": "pdf_parser",
+    "action": "解析年度报告 PDF",
+    "input_summary": "outputs/uploads/科大讯飞：2025年年度报告.pdf",
+    "output_summary": "PDF 解析完成：2.54MB，共301页，已抽取前200页。",
+    "status": "完成",
+    "elapsed_seconds": 0.246,
+    "error": ""
+  },
+  {
+    "order": 5,
+    "tool_name": "data_cleaner",
+    "action": "标准化财务报表项目",
+    "input_summary": "识别宽表/长表和中文科目",
+    "output_summary": "识别 15 个标准科目、2 个年度。",
+    "status": "完成",
+    "elapsed_seconds": 0.001,
+    "error": ""
+  },
+  {
+    "order": 6,
+    "tool_name": "data_validator",
+    "action": "校验数据完整性与勾稽关系",
+    "input_summary": "核心科目 + 资产负债表等式 + 利润现金流匹配",
+    "output_summary": "数据校验完成：通过 7 项，关注 0 项，异常 0 项。",
+    "status": "完成",
+    "elapsed_seconds": 0.003,
+    "error": ""
+  },
+  {
+    "order": 7,
+    "tool_name": "ratio_calculator",
+    "action": "计算财务指标",
+    "input_summary": "偿债、营运、盈利、成长、现金流量质量",
+    "output_summary": "生成 36 条指标记录。",
+    "status": "完成",
+    "elapsed_seconds": 0.005,
+    "error": ""
+  },
+  {
+    "order": 8,
+    "tool_name": "trend_analyzer",
+    "action": "分析多年度趋势",
+    "input_summary": "财务项目和核心指标",
+    "output_summary": "生成 14 条趋势判断。",
+    "status": "完成",
+    "elapsed_seconds": 0.005,
+    "error": ""
+  },
+  {
+    "order": 9,
+    "tool_name": "dupont_analyzer",
+    "action": "执行杜邦分析",
+    "input_summary": "净资产收益率（ROE）= 净利率 × 总资产周转率 × 权益乘数",
+    "output_summary": "2024 年至 2025 年净资产收益率（ROE）上升，变化主要受总资产周转率影响。",
+    "status": "完成",
+    "elapsed_seconds": 0.002,
+    "error": ""
+  },
+  {
+    "order": 10,
+    "tool_name": "cashflow_analyzer",
+    "action": "分析现金流量质量",
+    "input_summary": "经营活动现金流量净额与净利润匹配",
+    "output_summary": "现金流量质量评价：良好",
+    "status": "完成",
+    "elapsed_seconds": 0.0,
+    "error": ""
+  },
+  {
+    "order": 11,
+    "tool_name": "risk_detector",
+    "action": "识别异常风险",
+    "input_summary": "教材规则库 + 内置规则",
+    "output_summary": "触发 1 条风险提示。",
+    "status": "完成",
+    "elapsed_seconds": 0.006,
+    "error": ""
+  },
+  {
+    "order": 12,
+    "tool_name": "chart_generator",
+    "action": "生成可视化图表",
+    "input_summary": "趋势图、杜邦图、风险分布图",
+    "output_summary": "保存 5 个图表 HTML。",
+    "status": "完成",
+    "elapsed_seconds": 0.13,
+    "error": ""
+  },
+  {
+    "order": 13,
+    "tool_name": "report_generator",
+    "action": "生成标准化报告",
+    "input_summary": "Markdown + Word",
+    "output_summary": "报告生成完成；LLM 润色：否。",
+    "status": "完成",
+    "elapsed_seconds": 0.067,
+    "error": ""
+  }
+]

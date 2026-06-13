@@ -1,0 +1,33 @@
+{
+  "source_pdf": "outputs/uploads/科大讯飞：2025年年度报告.pdf",
+  "extracted_csv": "outputs/real_case/keda_xunfei_2025/extracted_financial_data.csv",
+  "extracted_xlsx": "outputs/real_case/keda_xunfei_2025/extracted_financial_data.xlsx",
+  "audit_json": "outputs/real_case/keda_xunfei_2025/extracted_financial_data_audit.json",
+  "pages_scanned": 301,
+  "pages_total": 301,
+  "tables_found": 1073,
+  "table_rows": 17921,
+  "text_lines": 3804,
+  "items_extracted": 15,
+  "years": [
+    2024,
+    2025
+  ],
+  "coverage_ratio": 1.0,
+  "missing_core_items": [],
+  "validation_summary": "数据校验完成：通过 7 项，关注 0 项，异常 0 项。",
+  "ratio_rows": 36,
+  "risk_count": 1,
+  "trace_steps": 13,
+  "core_metrics": {
+    "营业收入增长率": "16.12%",
+    "净利润增长率": "67.54%",
+    "资产负债率": "55.72%",
+    "净资产收益率（ROE）": "4.40%",
+    "净利润现金含量": "377.66%",
+    "风险提示数量": "1"
+  },
+  "warnings": [
+    "已剔除核心科目覆盖不足的年度：2023。这些年份多来自摘要或附注，未进入标准 CSV。"
+  ]
+}
