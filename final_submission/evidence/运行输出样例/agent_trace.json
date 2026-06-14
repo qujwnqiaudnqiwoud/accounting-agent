@@ -23,10 +23,10 @@
     "order": 3,
     "tool_name": "file_loader",
     "action": "读取标准财务数据 CSV/Excel",
-    "input_summary": "/Users/vison/Desktop/学习/大二下/生成式ai/期末作业/accounting-agent/data/sample_financial_data.xlsx",
+    "input_summary": "data/sample_financial_data.xlsx",
     "output_summary": "读取 15 行、4 列。",
     "status": "完成",
-    "elapsed_seconds": 0.057,
+    "elapsed_seconds": 0.256,
     "error": ""
   },
   {
@@ -46,7 +46,7 @@
     "input_summary": "识别宽表/长表和中文科目",
     "output_summary": "识别 15 个标准科目、3 个年度。",
     "status": "完成",
-    "elapsed_seconds": 0.001,
+    "elapsed_seconds": 0.006,
     "error": ""
   },
   {
@@ -56,7 +56,7 @@
     "input_summary": "核心科目 + 资产负债表等式 + 利润现金流匹配",
     "output_summary": "数据校验完成：通过 10 项，关注 0 项，异常 0 项。",
     "status": "完成",
-    "elapsed_seconds": 0.004,
+    "elapsed_seconds": 0.008,
     "error": ""
   },
   {
@@ -66,7 +66,7 @@
     "input_summary": "偿债、营运、盈利、成长、现金流量质量",
     "output_summary": "生成 54 条指标记录。",
     "status": "完成",
-    "elapsed_seconds": 0.006,
+    "elapsed_seconds": 0.008,
     "error": ""
   },
   {
@@ -76,7 +76,7 @@
     "input_summary": "财务项目和核心指标",
     "output_summary": "生成 14 条趋势判断。",
     "status": "完成",
-    "elapsed_seconds": 0.004,
+    "elapsed_seconds": 0.003,
     "error": ""
   },
   {
@@ -96,7 +96,7 @@
     "input_summary": "经营活动现金流量净额与净利润匹配",
     "output_summary": "现金流量质量评价：风险较高",
     "status": "完成",
-    "elapsed_seconds": 0.001,
+    "elapsed_seconds": 0.0,
     "error": ""
   },
   {
@@ -106,7 +106,7 @@
     "input_summary": "教材规则库 + 内置规则",
     "output_summary": "触发 8 条风险提示。",
     "status": "完成",
-    "elapsed_seconds": 0.009,
+    "elapsed_seconds": 0.008,
     "error": ""
   },
   {
@@ -116,7 +116,7 @@
     "input_summary": "趋势图、杜邦图、风险分布图",
     "output_summary": "保存 5 个图表 HTML。",
     "status": "完成",
-    "elapsed_seconds": 0.157,
+    "elapsed_seconds": 0.202,
     "error": ""
   },
   {
@@ -126,7 +126,7 @@
     "input_summary": "Markdown + Word",
     "output_summary": "报告生成完成；LLM 润色：否。",
     "status": "完成",
-    "elapsed_seconds": 0.091,
+    "elapsed_seconds": 0.024,
     "error": ""
   }
 ]

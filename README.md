@@ -2,6 +2,12 @@
 
 “财报智析 Agent：基于 smolagents 的上市公司财务报表智能分析系统”是《生成式AI会计前沿》课程期末项目。系统把财务报表分析教材框架转化为可调用的 Agent 工具链，支持从年度报告 PDF/Word 抽取财务数据并生成标准 CSV，也支持直接读取标准 Excel/CSV，随后完成指标计算、趋势分析、杜邦分析、现金流量质量分析、风险识别、图表展示和标准化报告生成。
 
+在线演示地址：[https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/](https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/)
+
+GitHub 仓库：[https://github.com/qujwnqiaudnqiwoud/accounting-agent](https://github.com/qujwnqiaudnqiwoud/accounting-agent)
+
+公网部署说明：项目已完成从本地开发、Agent 架构搭建、API 接入、前端交互到 Streamlit Cloud 在线演示的初步应用闭环。API Key 不写入代码或仓库，可在网页侧边栏临时填写，或在 Streamlit Cloud Secrets 中配置。
+
 ## 功能概览
 
 - Streamlit 财务分析工作台：先上传年报 PDF/Word 或标准 Excel/CSV，生成并预览标准 CSV，再点击分析，展示 Agent 工作流、核心指标、图表、风险卡片和报告。

@@ -4,9 +4,16 @@
 
 - 如老师要求，可补充系统运行截图或课堂演示截图。
 - 课程报告已补充投资者互动平台案例、经管期刊文献、智能财经平台应用对比和本项目解决路径。
+- 项目已发布 GitHub 仓库并完成 Streamlit Cloud 在线部署，在线演示地址：https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/
 - `final_submission/evidence/科大讯飞2025年报案例/` 已保存真实年报读取证据，包括标准 CSV、抽取审计 JSON、指标表、数据校验表、Agent trace 和真实案例 Word 报告。
 - `final_submission/evidence/运行输出样例/` 已保存指标表、校验表、图表 HTML、分析报告和 Agent trace。
 - `final_submission/evidence/文档渲染预览/` 保存 Word 文档渲染后的 PDF、HTML 和页面总览 PNG。
+
+## 在线演示
+
+- Streamlit Cloud：https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/
+- GitHub 仓库：https://github.com/qujwnqiaudnqiwoud/accounting-agent
+- 说明：在线演示用于证明项目已经完成从会计 Agent 制作、本地调试、API 接入、前端交互到公网展示的初步应用闭环。API Key 不写入代码和仓库，可通过网页侧边栏或 Streamlit Cloud Secrets 配置。
 
 ## 推荐运行方式
 
@@ -14,14 +21,6 @@
 cd accounting-agent
 pip install -r requirements.txt
 streamlit run app.py
-```
-
-如需查看或重新执行课程 Notebook：
-
-```bash
-cd accounting-agent
-pip install -r requirements.txt
-jupyter lab final_submission/财报智析Agent_项目说明_Notebook.ipynb
 ```
 
 如需使用大模型 API，可在网页侧边栏顶部填写 API Key，或在终端设置：

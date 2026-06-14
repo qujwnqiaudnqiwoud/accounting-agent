@@ -48,9 +48,9 @@ th {
 }
 </style></head><body><p class="center"><strong>《生成式AI会计前沿》课程作业题目说明</strong></p>
 <p class="center">财报智析 Agent：基于年报读取与确定性指标计算的会计垂直智能体</p>
-<table><tr><th>项目</th><th>内容</th></tr><tr><td>课程名称</td><td>生成式AI会计前沿</td></tr><tr><td>选题编号</td><td>选题二：会计垂直领域智能体（Agent）</td></tr><tr><td>项目名称</td><td>财报智析 Agent</td></tr><tr><td>小组成员</td><td>徐北辰 202408240218 24级智能会计班；周亦轩 202408240302 24级智能会计班</td></tr><tr><td>组长</td><td>徐北辰 202408240218 24级智能会计班</td></tr><tr><td>提交日期</td><td>2026年6月12日</td></tr><tr><td>运行环境</td><td>Python 3.11；Streamlit；pandas；smolagents；OpenAI-compatible API；pdfplumber；PyMuPDF；python-docx</td></tr></table>
+<table><tr><th>项目</th><th>内容</th></tr><tr><td>课程名称</td><td>生成式AI会计前沿</td></tr><tr><td>选题编号</td><td>选题二：会计垂直领域智能体（Agent）</td></tr><tr><td>项目名称</td><td>财报智析 Agent</td></tr><tr><td>小组成员</td><td>徐北辰 202408240218 24级智能会计班；周亦轩 202408240302 24级智能会计班</td></tr><tr><td>组长</td><td>徐北辰 202408240218 24级智能会计班</td></tr><tr><td>提交日期</td><td>2026年6月12日</td></tr><tr><td>运行环境</td><td>Python 3.11；Streamlit；pandas；smolagents；OpenAI-compatible API；pdfplumber；PyMuPDF；python-docx</td></tr><tr><td>在线演示地址</td><td>https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/</td></tr><tr><td>GitHub 仓库</td><td>https://github.com/qujwnqiaudnqiwoud/accounting-agent</td></tr></table>
 <h1>1. 研究问题</h1>
-<p>本项目切入的不是一般聊天机器人问题，而是会计、财务和审计场景中的财务报告解读问题。从深交所互动易、上证 e 互动、全景路演等投资者互动平台可以看到，投资者经常围绕年报中的经营现金流、应收账款、坏账准备、收入确认和资产负债率等指标向上市公司追问，说明年报数字到财务判断之间仍存在明显的信息处理成本。上市公司年度报告篇幅长、表格结构复杂，普通用户往往难以快速把 PDF/Word 年报转换为可分析的标准财务数据。本项目研究如何构建一个会计垂直领域 Agent，使其能够读取年报或标准 Excel/CSV，生成标准化数据，并进一步完成指标计算、趋势分析、杜邦分析、现金流量质量分析、风险识别和标准化报告生成。</p>
+<p>本项目切入的不是一般聊天机器人问题，而是会计、财务和审计场景中的财务报告解读问题。从深交所互动易、上证 e 互动、全景路演等投资者互动平台可以看到，投资者经常围绕年报中的经营现金流、应收账款、坏账准备、收入确认和资产负债率等指标向上市公司追问，说明年报数字到财务判断之间仍存在明显的信息处理成本。上市公司年度报告篇幅长、表格结构复杂，普通用户往往难以快速把 PDF/Word 年报转换为可分析的标准财务数据。本项目研究如何构建一个会计垂直领域 Agent，使其能够读取年报或标准 Excel/CSV，生成标准化数据，并进一步完成指标计算、趋势分析、杜邦分析、现金流量质量分析、风险识别和标准化报告生成。项目已完成 GitHub 仓库发布和 Streamlit Cloud 在线部署，形成可在线访问、可课堂演示、可复现实验的初步应用形态。</p>
 <p>具体而言，圣泉集团投资者关系活动中曾出现投资者依据经营净现金流与净利润比值追问盈利质量的案例；《网络平台互动与股票异质性风险》《整合信息披露、信息处理成本与投资意愿》《中文年报可读性：衡量与检验》等文献也说明，投资者信息处理能力、年报可读性和信息呈现方式会影响财报理解。现实应用层面，CSMAR、同花顺问财、Wind Alice、Choice 和 Datayes AI 开放平台等已经出现智能财经问答、财报分析、风险诊断或金融 Agent 数据接口实践，本项目则把这些方向转化为可复现的课程级会计 Agent。</p>
 <h1>2. 数据与样本</h1>
 <p>样例结构化数据：accounting-agent/data/sample_financial_data.xlsx。</p>
@@ -62,9 +62,13 @@ th {
 <p>用 smolagents ToolCallingAgent 规划工具链；API 不可用时自动降级为受控 Python 管线。</p>
 <p>用大模型完成计划生成、解释组织和报告润色，但不允许新增未计算数字。</p>
 <p>用 Streamlit 构建前端工作台，把数据读取阶段与财务分析阶段分开展示。</p>
+<p>用 Streamlit Cloud 部署在线演示入口：https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/，验证系统从 Agent 制作到初步应用的工程闭环。</p>
 <p>用投资者互动平台、年报可读性和大数据审计文献说明选题的会计专业价值。</p>
 <h1>4. 小组分工</h1>
-<table><tr><th>项目</th><th>内容</th></tr><tr><td>徐北辰（组长，60%）</td><td>负责智能体总体架构设计、smolagents 主控 Agent 接入、后端工具链组织、Streamlit 前端工作台构建、API 配置区、动态 Agent trace、数据读取与分析流程串联、代码调试、测试验证和最终工程打包。</td></tr><tr><td>周亦轩（成员，40%）</td><td>负责财务报表分析教材框架、指标体系、风险规则和相关文献资料的收集整理，参与报告结构设计、页面表达优化和前端视觉美化，协助校对指标名称、报告表述和课堂展示材料。</td></tr></table>
-<h1>5. 作业承诺</h1>
+<table><tr><th>项目</th><th>内容</th></tr><tr><td>徐北辰（组长，60%）</td><td>负责智能体总体架构设计、smolagents 主控 Agent 接入、后端工具链组织、Streamlit 前端工作台构建、API 配置区、动态 Agent trace、数据读取与分析流程串联、代码调试、测试验证、GitHub 仓库发布、Streamlit Cloud 在线部署和最终工程打包。</td></tr><tr><td>周亦轩（成员，40%）</td><td>负责财务报表分析教材框架、指标体系、风险规则和相关文献资料的收集整理，参与报告结构设计、页面表达优化和前端视觉美化，协助校对指标名称、报告表述和课堂展示材料。</td></tr></table>
+<h1>5. 在线部署与初步应用</h1>
+<p>本项目已发布 GitHub 仓库（https://github.com/qujwnqiaudnqiwoud/accounting-agent），并完成 Streamlit Cloud 在线部署，访问地址为：https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/。这说明系统不再只是本地运行的代码 Demo，而是具备了在线访问、交互测试和课堂展示能力。从课程作业角度看，该部署过程体现了从会计问题识别、Agent 架构搭建、API 接入、前端交互、测试验证到公网演示的完整实践链条。</p>
+<p>公网部署还使教师或同学可以在不进入本地开发环境的情况下查看系统界面和交互流程。同时，API Key 不写入代码和仓库，可通过网页侧边栏或 Streamlit Cloud Secrets 等方式配置，体现了基本的工程安全意识。</p>
+<h1>6. 作业承诺</h1>
 <p>本项目作业参考文献和 LLM/Agent 使用情况见课程报告附录。</p>
 <p>本项目由徐北辰、周亦轩共同完成，贡献比例为徐北辰 60%、周亦轩 40%。</p></body></html>

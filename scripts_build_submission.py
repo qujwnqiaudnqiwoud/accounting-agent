@@ -14,6 +14,8 @@ ROOT_DIR = PROJECT_DIR.parent
 TEMPLATE_DIR = ROOT_DIR / "张三-李四-课程作业模板"
 OUT_DIR = PROJECT_DIR / "final_submission"
 SUBMISSION_DATE = "2026年6月12日"
+DEPLOYMENT_URL = "https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/"
+GITHUB_URL = "https://github.com/qujwnqiaudnqiwoud/accounting-agent"
 
 TEAM_MEMBERS = [
     {
@@ -25,15 +27,16 @@ TEAM_MEMBERS = [
         "contribution": (
             "负责智能体总体架构设计、smolagents 主控 Agent 接入、后端工具链组织、"
             "Streamlit 前端工作台构建、API 配置区、动态 Agent trace、数据读取与分析流程串联、"
-            "代码调试、测试验证和最终工程打包。"
+            "代码调试、测试验证、GitHub 仓库发布、Streamlit Cloud 在线部署和最终工程打包。"
         ),
         "reflection": (
             "徐北辰在项目中主要负责把会计分析任务拆解为可执行、可追踪的 Agent 工具链。"
             "在查阅投资者互动问答和现有智能财经平台后，进一步认识到财报分析的难点不是简单生成一段结论，"
             "而是要把年报数字、指标口径、风险触发依据和报告表达连接成可复核的证据链。"
             "因此在搭建过程中，将财务数据清洗、指标计算、勾稽校验和风险识别交给确定性 Python 模块完成，"
-            "让大模型承担计划生成和语言组织。通过前端工作台和动态 trace 的实现，也体会到一个可演示的 Agent 系统不仅要能算，"
-            "还要让用户看清楚它正在调用什么工具、依据什么数据、输出什么结果。"
+            "让大模型承担计划生成和语言组织。通过前端工作台、动态 trace 和 Streamlit Cloud 在线部署的实现，"
+            "也体会到一个可演示的 Agent 系统不仅要能算，还要能够被用户实际打开、测试和复核，"
+            "让用户看清楚它正在调用什么工具、依据什么数据、输出什么结果。"
         ),
     },
     {
@@ -52,7 +55,7 @@ TEAM_MEMBERS = [
             "在补充年报可读性、网络平台互动、信息处理成本和大数据审计等文献后，也进一步理解了财务报告分析工具的专业价值："
             "它需要帮助用户降低阅读成本、统一指标口径，并把风险提示限定在审慎、可追溯的范围内。"
             "在参与前端美化和报告结构设计时，也认识到会计智能体的展示界面需要兼顾专业性和可读性，"
-            "既要保持财务系统的稳重风格，也要让用户能够快速找到数据来源、指标结论和风险依据。"
+            "既要保持财务系统的稳重风格，也要让用户能够快速找到数据来源、指标结论、风险依据和在线演示入口。"
         ),
     },
 ]
@@ -349,6 +352,8 @@ def build_topic_doc() -> Path:
             ("组长", _member_line(TEAM_MEMBERS[0])),
             ("提交日期", SUBMISSION_DATE),
             ("运行环境", "Python 3.11；Streamlit；pandas；smolagents；OpenAI-compatible API；pdfplumber；PyMuPDF；python-docx"),
+            ("在线演示地址", DEPLOYMENT_URL),
+            ("GitHub 仓库", GITHUB_URL),
         ],
     )
     doc.add_heading("1. 研究问题", level=1)
@@ -359,6 +364,7 @@ def build_topic_doc() -> Path:
         "上市公司年度报告篇幅长、表格结构复杂，普通用户往往难以快速把 PDF/Word 年报转换为可分析的标准财务数据。"
         "本项目研究如何构建一个会计垂直领域 Agent，使其能够读取年报或标准 Excel/CSV，生成标准化数据，"
         "并进一步完成指标计算、趋势分析、杜邦分析、现金流量质量分析、风险识别和标准化报告生成。"
+        "项目已完成 GitHub 仓库发布和 Streamlit Cloud 在线部署，形成可在线访问、可课堂演示、可复现实验的初步应用形态。"
     )
     doc.add_paragraph(
         "具体而言，圣泉集团投资者关系活动中曾出现投资者依据经营净现金流与净利润比值追问盈利质量的案例；"
@@ -387,6 +393,7 @@ def build_topic_doc() -> Path:
             "用 smolagents ToolCallingAgent 规划工具链；API 不可用时自动降级为受控 Python 管线。",
             "用大模型完成计划生成、解释组织和报告润色，但不允许新增未计算数字。",
             "用 Streamlit 构建前端工作台，把数据读取阶段与财务分析阶段分开展示。",
+            f"用 Streamlit Cloud 部署在线演示入口：{DEPLOYMENT_URL}，验证系统从 Agent 制作到初步应用的工程闭环。",
             "用投资者互动平台、年报可读性和大数据审计文献说明选题的会计专业价值。",
         ],
     )
@@ -401,7 +408,17 @@ def build_topic_doc() -> Path:
             for member in TEAM_MEMBERS
         ],
     )
-    doc.add_heading("5. 作业承诺", level=1)
+    doc.add_heading("5. 在线部署与初步应用", level=1)
+    doc.add_paragraph(
+        f"本项目已发布 GitHub 仓库（{GITHUB_URL}），并完成 Streamlit Cloud 在线部署，访问地址为：{DEPLOYMENT_URL}。"
+        "这说明系统不再只是本地运行的代码 Demo，而是具备了在线访问、交互测试和课堂展示能力。"
+        "从课程作业角度看，该部署过程体现了从会计问题识别、Agent 架构搭建、API 接入、前端交互、测试验证到公网演示的完整实践链条。"
+    )
+    doc.add_paragraph(
+        "公网部署还使教师或同学可以在不进入本地开发环境的情况下查看系统界面和交互流程。"
+        "同时，API Key 不写入代码和仓库，可通过网页侧边栏或 Streamlit Cloud Secrets 等方式配置，体现了基本的工程安全意识。"
+    )
+    doc.add_heading("6. 作业承诺", level=1)
     doc.add_paragraph("本项目作业参考文献和 LLM/Agent 使用情况见课程报告附录。")
     doc.add_paragraph(f"本项目由徐北辰、周亦轩共同完成，贡献比例为徐北辰 60%、周亦轩 40%。")
     out = OUT_DIR / "财报智析Agent_作业题目说明.docx"
@@ -424,6 +441,8 @@ def build_report_doc() -> Path:
             ("组长", _member_line(TEAM_MEMBERS[0])),
             ("贡献比例", "徐北辰 60%；周亦轩 40%"),
             ("提交日期", SUBMISSION_DATE),
+            ("在线演示地址", DEPLOYMENT_URL),
+            ("GitHub 仓库", GITHUB_URL),
         ],
     )
 
@@ -440,6 +459,8 @@ def build_report_doc() -> Path:
         "再由 Agent 工具链完成数据校验、指标计算、趋势分析、杜邦分析、现金流量质量分析、异常风险识别和标准化报告生成。"
         "项目采用“确定性计算 + 大模型解释”的架构：财务数字、指标公式、风险触发均由 Python 工具生成，"
         "大模型仅用于工具链规划、解释组织和报告润色，从而降低财务分析中的幻觉风险。"
+        "在工程交付层面，项目已发布 GitHub 仓库并部署至 Streamlit Cloud，形成可在线访问和课堂展示的演示入口，"
+        "体现了从会计问题识别、Agent 架构设计、本地开发调试到初步应用发布的完整闭环。"
         "实验结果表明，系统能够在样例数据上稳定生成指标表、数据校验表、图表、Agent 调用记录和 Word 分析报告，"
         "形成从问题发现、数据处理、指标复核到报告输出的可追溯闭环。"
     )
@@ -450,7 +471,7 @@ def build_report_doc() -> Path:
         f"{real_case.get('text_lines')} 行文本记录，最终抽取 {real_case.get('items_extracted')} 个标准财务科目，"
         f"核心科目覆盖率为 {_coverage_text(real_case)}，并继续生成指标、校验表、风险提示和 Agent trace。"
     )
-    doc.add_paragraph("关键词：会计智能体；财务报表分析；年报解析；smolagents；OpenAI-compatible API")
+    doc.add_paragraph("关键词：会计智能体；财务报表分析；年报解析；Streamlit Cloud；smolagents；OpenAI-compatible API")
 
     doc.add_heading("1. 引言", level=1)
     doc.add_heading("1.1 问题发现路径", level=2)
@@ -505,6 +526,7 @@ def build_report_doc() -> Path:
             "审计思维价值：用数据校验、勾稽关系检查和 Agent trace 保留证据链，训练学生从可验证数据出发提出审慎判断。",
             "技术实践价值：探索大模型在会计场景中的合理边界，避免让模型直接编造或估算财务数字。",
             "教学展示价值：把数据读取、工具调用、指标计算、风险识别和报告生成全过程可视化，便于课堂汇报。",
+            f"应用落地价值：项目已完成 GitHub 发布和 Streamlit Cloud 在线部署（{DEPLOYMENT_URL}），说明课程原型具备被外部访问、演示和初步试用的条件。",
         ],
     )
     doc.add_heading("1.5 研究思路", level=2)
@@ -519,7 +541,7 @@ def build_report_doc() -> Path:
     _add_bullets(
         doc,
         [
-            "前端层：Streamlit 工作台，提供 API 配置、文件上传、数据读取、分析启动、结果展示和下载功能。",
+            "前端层：Streamlit 工作台，提供 API 配置、文件上传、数据读取、分析启动、结果展示和下载功能；本地运行与 Streamlit Cloud 在线部署共用同一套代码。",
             "Agent 层：smolagents ToolCallingAgent 用于工具链规划；未配置 API Key 或远程调用失败时使用 fallback pipeline。",
             "工具层：包括 financial_statement_extractor、data_cleaner、data_validator、ratio_calculator、risk_detector、report_generator 等模块。",
             "知识层：knowledge/ 中保存分析框架、指标定义、风险规则、提示词和报告模板。",
@@ -551,6 +573,7 @@ def build_report_doc() -> Path:
         "系统默认支持 DeepSeek OpenAI-compatible API，也可以通过配置切换其他兼容服务。"
         "Prompt 明确限制模型不得新增未计算数字，不得使用“造假、违规、必然”等绝对化表述。"
         "当 API Key 未配置、API 调用失败或 smolagents 不可用时，系统保留 fallback pipeline，保证课堂演示不中断。"
+        "公网部署时，API Key 不写入 GitHub 仓库和源代码，可通过网页侧边栏临时输入，或通过 Streamlit Cloud Secrets 等方式进行私密配置。"
     )
 
     doc.add_heading("3. 研究结果", level=1)
@@ -563,15 +586,29 @@ def build_report_doc() -> Path:
             "完成模型 API 配置区：支持侧边栏直接填写 API Base、模型名称和 API Key。",
             "完成动态 Agent trace：页面实时展示当前步骤、输入摘要、输出摘要、状态和耗时。",
             "完成数据校验、指标计算、图表生成和 Word/Markdown 报告导出。",
+            f"完成 GitHub 仓库发布与 Streamlit Cloud 在线部署，演示地址：{DEPLOYMENT_URL}。",
         ],
     )
-    doc.add_heading("3.2 测试与复现结果", level=2)
+    doc.add_heading("3.2 在线部署与初步应用验证", level=2)
+    doc.add_paragraph(
+        f"除本地运行外，本项目已部署到 Streamlit Cloud，在线演示地址为：{DEPLOYMENT_URL}。"
+        f"项目代码同步发布在 GitHub 仓库：{GITHUB_URL}。"
+        "这一步使系统从本地课程原型推进到可在线访问、可交互测试、可课堂展示的初步应用状态。"
+        "对期末作业而言，公网部署能够证明小组不仅完成了 Agent 代码开发，也掌握了从环境配置、依赖管理、仓库发布、"
+        "云端运行到应用展示的完整工程流程。"
+    )
+    doc.add_paragraph(
+        "在线部署保留了本地系统的核心交互：用户可以进入网页工作台，查看模型 API 配置区、上传财务数据或年报文件、"
+        "观察数据读取与分析两个阶段，并下载分析结果。由于财务分析项目涉及 API Key，项目没有把密钥写入代码或公开仓库，"
+        "而是通过页面输入或平台 Secrets 配置，兼顾展示便利性和密钥安全。"
+    )
+    doc.add_heading("3.3 测试与复现结果", level=2)
     doc.add_paragraph(
         "项目已使用 pytest 覆盖数据清洗、数据校验、指标计算、风险识别、模型配置、年报抽取、Word 渲染和 Agent trace 回调等模块。"
         "当前测试结果为 18 passed。使用 data/sample_financial_data.xlsx 可跑通从标准数据读取到报告生成的完整流程，"
         "并生成 data_validation.xlsx、ratio_results.xlsx、financial_analysis_report.docx 和 agent_trace.json。"
     )
-    doc.add_heading("3.3 真实年报读取验证：科大讯飞 2025 年年度报告", level=2)
+    doc.add_heading("3.4 真实年报读取验证：科大讯飞 2025 年年度报告", level=2)
     doc.add_paragraph(
         "为检验系统对长篇上市公司年报的读取能力，本项目选取本地文件 data/科大讯飞_2025年年度报告.pdf 进行端到端验证。"
         "系统先从 PDF 抽取标准财务数据，再用同一套确定性工具链完成数据校验、指标计算、风险识别、报告生成和 Agent trace 记录。"
@@ -584,7 +621,7 @@ def build_report_doc() -> Path:
         "随后分析阶段生成指标记录、数据校验记录、风险提示和 Word 报告，证明本项目不是只依赖人工整理好的 CSV，"
         "而是能够将真实年报读取能力纳入 Agent 工作流。"
     )
-    doc.add_heading("3.4 会计分析结果输出", level=2)
+    doc.add_heading("3.5 会计分析结果输出", level=2)
     doc.add_paragraph(
         "系统输出不是单一文字报告，而是包含多层证据：标准化财务数据用于核对来源，数据校验表用于判断数据质量，"
         "指标表用于复核公式，风险卡片说明触发依据和改进建议，Agent trace 记录每个工具调用的执行状态。"
@@ -592,7 +629,7 @@ def build_report_doc() -> Path:
         "对应投资者互动平台中的典型追问，系统能够把经营现金流与净利润背离、应收账款增长、存货增长、"
         "资产负债率上升和毛利率下降等问题转化为可下载的指标表和风险说明，帮助用户从年报事实走向财务判断。"
     )
-    doc.add_heading("3.5 局限性与改进方向", level=2)
+    doc.add_heading("3.6 局限性与改进方向", level=2)
     _add_bullets(
         doc,
         [
@@ -611,7 +648,9 @@ def build_report_doc() -> Path:
         "这种架构兼顾了生成式 AI 的交互性和会计分析对准确性、谨慎性、可追溯性的要求。"
         "从问题来源看，投资者互动平台和年报文本研究共同说明：财报使用者需要的不是更多泛化文字，"
         "而是更低的信息处理成本、更清晰的指标口径和更可靠的证据链。"
-        "本项目以本地化、可复现的方式实现了这一目标的课程版本，为后续接入行业数据库、同行比较、审计意见和关键审计事项分析留下了扩展空间。"
+        "本项目以本地化、可复现的方式实现了这一目标的课程版本，并进一步通过 GitHub 和 Streamlit Cloud 完成在线发布，"
+        "说明系统已具备从制作 Agent 到初步应用展示的完整过程。"
+        "后续可继续接入行业数据库、同行比较、审计意见和关键审计事项分析。"
     )
     doc.add_heading("4.2 学习心得与课程建议", level=2)
     for member in TEAM_MEMBERS:
@@ -648,6 +687,13 @@ def build_report_doc() -> Path:
     )
     doc.add_paragraph("签名：徐北辰、周亦轩")
     doc.add_paragraph(f"日期：{SUBMISSION_DATE}")
+    doc.add_heading("附录E 在线演示与代码仓库", level=2)
+    doc.add_paragraph(f"Streamlit Cloud 在线演示地址：{DEPLOYMENT_URL}")
+    doc.add_paragraph(f"GitHub 项目仓库：{GITHUB_URL}")
+    doc.add_paragraph(
+        "说明：在线演示用于展示项目已具备公网访问、交互测试和课堂汇报能力。"
+        "如平台因权限或休眠机制要求登录或唤醒，可按 Streamlit 页面提示进入；项目本地运行和提交包仍可独立复现。"
+    )
 
     out = OUT_DIR / "财报智析Agent_课程报告.docx"
     doc.save(out)
@@ -678,6 +724,8 @@ def build_notebook() -> Path:
                 "问题来源于真实资本市场中的财报解读需求：深交所互动易、上证 e 互动、全景路演等平台上，投资者经常围绕经营现金流、应收账款、坏账准备、收入确认、资产负债率和财务指标变动原因向上市公司追问。相关文献也表明，年报可读性、文本复杂性和信息处理成本会影响投资者理解和风险识别。因此，本项目重点解决年报信息处理成本高、指标口径整理难、风险识别证据链弱和大模型直接生成财报结论容易幻觉的问题。\\n",
                 "\\n",
                 "已有 CSMAR 智能财经报告分析平台、CSMAR 上市公司风险智能感知系统、弈 Chat、同花顺问财、Wind Alice、Choice 妙想 AI、Datayes AI 开放平台等相邻实践，说明 AI 财经问答、报告生成、风险诊断和 Agent 数据接口已经进入业务场景。本项目的差异是面向课堂与课程作业，强调本地可运行、确定性指标计算和 Agent trace 可追踪。\\n",
+                "\\n",
+                f"项目已完成 GitHub 仓库发布和 Streamlit Cloud 在线部署，在线演示地址：{DEPLOYMENT_URL}。这一步说明系统从本地代码 Demo 推进到可访问、可交互测试、可课堂展示的初步应用状态。\\n",
             ],
         },
         {
@@ -880,9 +928,16 @@ def write_markdown_files() -> list[Path]:
 
 - 如老师要求，可补充系统运行截图或课堂演示截图。
 - 课程报告已补充投资者互动平台案例、经管期刊文献、智能财经平台应用对比和本项目解决路径。
+- 项目已发布 GitHub 仓库并完成 Streamlit Cloud 在线部署，在线演示地址：{deployment_url}
 - `final_submission/evidence/科大讯飞2025年报案例/` 已保存真实年报读取证据，包括标准 CSV、抽取审计 JSON、指标表、数据校验表、Agent trace 和真实案例 Word 报告。
 - `final_submission/evidence/运行输出样例/` 已保存指标表、校验表、图表 HTML、分析报告和 Agent trace。
 - `final_submission/evidence/文档渲染预览/` 保存 Word 文档渲染后的 PDF、HTML 和页面总览 PNG。
+
+## 在线演示
+
+- Streamlit Cloud：{deployment_url}
+- GitHub 仓库：{github_url}
+- 说明：在线演示用于证明项目已经完成从会计 Agent 制作、本地调试、API 接入、前端交互到公网展示的初步应用闭环。API Key 不写入代码和仓库，可通过网页侧边栏或 Streamlit Cloud Secrets 配置。
 
 ## 推荐运行方式
 
@@ -917,7 +972,7 @@ streamlit run app.py
 ```
 
 输出目录中的 PDF 和 PNG 用于检查是否有空白页、乱码或明显排版问题。
-""",
+""".format(deployment_url=DEPLOYMENT_URL, github_url=GITHUB_URL),
         encoding="utf-8",
     )
     checklist = OUT_DIR / "提交文件清单.md"
@@ -959,6 +1014,7 @@ streamlit run app.py
 - [x] 已将真实年报抽取 CSV、审计 JSON、指标表、校验表和 Agent trace 放入提交包。
 - [x] 已将运行输出样例、图表 HTML 和系统生成报告放入提交包。
 - [x] 已将 Word 渲染预览 PDF、HTML 和页面总览图放入提交包。
+- [x] 已完成 GitHub 仓库发布和 Streamlit Cloud 在线部署，并在课程报告中写明在线演示地址。
 - [x] 已运行 `pytest` 并确认测试通过。
 - [x] 已运行 `scripts_render_docx.py` 并检查 Word 报告预览。
 - [x] 已确认 Streamlit 页面可打开。
