@@ -16,6 +16,7 @@ OUT_DIR = PROJECT_DIR / "final_submission"
 SUBMISSION_DATE = "2026年6月12日"
 DEPLOYMENT_URL = "https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/"
 GITHUB_URL = "https://github.com/qujwnqiaudnqiwoud/accounting-agent"
+TEXTBOOK_SOURCE = "张新民、钱爱民《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》"
 
 TEAM_MEMBERS = [
     {
@@ -46,11 +47,11 @@ TEAM_MEMBERS = [
         "role": "成员",
         "ratio": "40%",
         "contribution": (
-            "负责财务报表分析教材框架、指标体系、风险规则和相关文献资料的收集整理，"
+            f"负责{TEXTBOOK_SOURCE}等权威教材框架、指标体系、风险规则和相关文献资料的收集整理，"
             "参与报告结构设计、页面表达优化和前端视觉美化，协助校对指标名称、报告表述和课堂展示材料。"
         ),
         "reflection": (
-            "周亦轩在项目中主要围绕会计专业资料和展示体验展开工作。通过整理教材框架、指标定义和风险规则，"
+            f"周亦轩在项目中主要围绕会计专业资料和展示体验展开工作。通过整理{TEXTBOOK_SOURCE}中的教材框架、指标定义和风险规则，"
             "更加清楚地理解了传统财务报表分析中偿债能力、营运能力、盈利能力、成长能力、现金流量质量和杜邦分析之间的逻辑关系。"
             "在补充年报可读性、网络平台互动、信息处理成本和大数据审计等文献后，也进一步理解了财务报告分析工具的专业价值："
             "它需要帮助用户降低阅读成本、统一指标口径，并把风险提示限定在审慎、可追溯的范围内。"
@@ -364,6 +365,8 @@ def build_topic_doc() -> Path:
         "上市公司年度报告篇幅长、表格结构复杂，普通用户往往难以快速把 PDF/Word 年报转换为可分析的标准财务数据。"
         "本项目研究如何构建一个会计垂直领域 Agent，使其能够读取年报或标准 Excel/CSV，生成标准化数据，"
         "并进一步完成指标计算、趋势分析、杜邦分析、现金流量质量分析、风险识别和标准化报告生成。"
+        f"其中，初步 Agent 分析流程不是主观拼接，而是以{TEXTBOOK_SOURCE}中的偿债能力、营运能力、盈利能力、"
+        "成长能力、现金流量质量分析和杜邦分析等经典财务报表分析框架为依据，再将其转化为可调用的工具链。"
         "项目已完成 GitHub 仓库发布和 Streamlit Cloud 在线部署，形成可在线访问、可课堂演示、可复现实验的初步应用形态。"
     )
     doc.add_paragraph(
@@ -378,6 +381,7 @@ def build_topic_doc() -> Path:
         doc,
         [
             "样例结构化数据：accounting-agent/data/sample_financial_data.xlsx。",
+            f"分析框架来源：{TEXTBOOK_SOURCE}，用于确定 Agent 的指标分类、分析顺序和报告结构。",
             "真实年报读取样例：accounting-agent/data/科大讯飞_2025年年度报告.pdf。系统已扫描 "
             f"{real_case.get('pages_scanned')} / {real_case.get('pages_total')} 页，抽取 "
             f"{real_case.get('items_extracted')} 个标准财务科目，核心科目覆盖率 {_coverage_text(real_case)}。",
@@ -389,6 +393,7 @@ def build_topic_doc() -> Path:
     _add_bullets(
         doc,
         [
+            f"以{TEXTBOOK_SOURCE}为权威教材依据，将偿债能力、营运能力、盈利能力、成长能力、现金流量质量和杜邦分析整理为 Agent 工作流。",
             "用 Python 工具链完成可追溯的财务数据清洗、指标计算和风险规则判断。",
             "用 smolagents ToolCallingAgent 规划工具链；API 不可用时自动降级为受控 Python 管线。",
             "用大模型完成计划生成、解释组织和报告润色，但不允许新增未计算数字。",
@@ -457,6 +462,9 @@ def build_report_doc() -> Path:
         "相关经管文献也表明，年报可读性、文本复杂性和信息处理成本会影响投资者理解、风险识别和市场信息效率。"
         "基于这一问题，本系统支持用户上传年度报告 PDF/Word 或标准 Excel/CSV，先将年报中的报表数据抽取为标准财务数据，"
         "再由 Agent 工具链完成数据校验、指标计算、趋势分析、杜邦分析、现金流量质量分析、异常风险识别和标准化报告生成。"
+        f"需要特别说明的是，系统初步分析流程以{TEXTBOOK_SOURCE}为权威教材依据，"
+        "将教材中的偿债能力、营运能力、盈利能力、成长能力、现金流量质量和杜邦分析框架转化为 Agent 可调用的工具链，"
+        "因此该流程不是单纯技术拼装，而是会计专业分析框架的程序化实现。"
         "项目采用“确定性计算 + 大模型解释”的架构：财务数字、指标公式、风险触发均由 Python 工具生成，"
         "大模型仅用于工具链规划、解释组织和报告润色，从而降低财务分析中的幻觉风险。"
         "在工程交付层面，项目已发布 GitHub 仓库并部署至 Streamlit Cloud，形成可在线访问和课堂展示的演示入口，"
@@ -535,6 +543,19 @@ def build_report_doc() -> Path:
         "第二阶段在用户确认数据后启动 Agent 分析。主控 Agent 先读取模型配置并规划工具链，"
         "随后依次调用文件读取、数据清洗、数据校验、指标计算、趋势分析、杜邦分析、现金流分析、风险识别、图表生成和报告生成模块。"
     )
+    doc.add_heading("1.6 教材框架来源", level=2)
+    doc.add_paragraph(
+        f"本项目初步 Agent 分析流程以{TEXTBOOK_SOURCE}为主要权威教材依据。"
+        "教材中的财务报表分析路径强调从报表项目出发，围绕偿债能力、营运能力、盈利能力、成长能力、现金流量质量和杜邦分析展开，"
+        "并通过指标变化解释企业财务状况、经营效率、盈利质量和资本结构风险。"
+        "本项目将这一传统会计分析流程拆解为可执行模块：ratio_calculator 对应教材中的指标公式和分类，"
+        "trend_analyzer 对应纵向趋势比较，dupont_analyzer 对应权益净利率分解，cashflow_analyzer 对应利润现金含量和销售收现能力分析，"
+        "risk_detector 则把教材中的审慎分析思路转化为可追踪的风险提示规则。"
+    )
+    doc.add_paragraph(
+        "因此，Agent 在本项目中并不是替代会计专业判断的黑箱聊天工具，而是把权威教材中的分析框架、指标口径和报告逻辑工程化。"
+        "大模型负责调度和表达，核心财务分析框架仍来自教材和确定性工具。"
+    )
 
     doc.add_heading("2. 实验设计", level=1)
     doc.add_heading("2.1 系统架构设计", level=2)
@@ -544,7 +565,7 @@ def build_report_doc() -> Path:
             "前端层：Streamlit 工作台，提供 API 配置、文件上传、数据读取、分析启动、结果展示和下载功能；本地运行与 Streamlit Cloud 在线部署共用同一套代码。",
             "Agent 层：smolagents ToolCallingAgent 用于工具链规划；未配置 API Key 或远程调用失败时使用 fallback pipeline。",
             "工具层：包括 financial_statement_extractor、data_cleaner、data_validator、ratio_calculator、risk_detector、report_generator 等模块。",
-            "知识层：knowledge/ 中保存分析框架、指标定义、风险规则、提示词和报告模板。",
+            f"知识层：knowledge/ 中保存由{TEXTBOOK_SOURCE}整理而来的分析框架、指标定义、风险规则、提示词和报告模板。",
             "输出层：生成标准 CSV/Excel、数据校验表、指标 Excel、图表 HTML、Markdown/Word 报告和 Agent trace JSON。",
         ],
     )
@@ -567,6 +588,7 @@ def build_report_doc() -> Path:
         "净利润增长率、净利润现金含量、销售收现比率等指标。data_validator 进一步检查核心科目完整性、"
         "资产=负债+所有者权益的勾稽关系，以及净利润与经营活动现金流量净额的基础匹配性。"
         "risk_detector 使用规则识别应收账款异常增长、存货增长较快、利润与现金流背离、毛利率连续下降、资产负债率持续上升等风险提示。"
+        f"这些指标分类与分析顺序对应{TEXTBOOK_SOURCE}的财务报表分析框架，体现了从权威教材到 Agent 工具链的转化。"
     )
     doc.add_heading("2.4 大模型 API 与防幻觉设计", level=2)
     doc.add_paragraph(
@@ -582,6 +604,7 @@ def build_report_doc() -> Path:
         doc,
         [
             "完成 accounting-agent/ 项目结构，包含 app.py、agents/、tools/、schemas/、config/、knowledge/、data/、tests/、notebooks/ 等目录。",
+            f"完成基于{TEXTBOOK_SOURCE}的分析框架工程化，将教材中的指标体系和分析流程写入 knowledge/ 与工具模块。",
             "完成 Streamlit 两阶段工作流：读取数据并生成标准 CSV，用户确认后再启动分析。",
             "完成模型 API 配置区：支持侧边栏直接填写 API Base、模型名称和 API Key。",
             "完成动态 Agent trace：页面实时展示当前步骤、输入摘要、输出摘要、状态和耗时。",
@@ -644,6 +667,8 @@ def build_report_doc() -> Path:
     doc.add_heading("4.1 研究结论", level=2)
     doc.add_paragraph(
         "本项目证明，会计垂直 Agent 的关键不在于让大模型直接给出财务结论，而在于把会计分析流程拆解为可验证的工具链。"
+        f"本项目的初步分析流程以{TEXTBOOK_SOURCE}为权威教材依据，说明系统的专业逻辑来源于成熟财务报表分析体系，"
+        "而不是由模型临时生成或由开发者任意拼接。"
         "在财务数字和指标公式由 Python 确定性执行的前提下，大模型可以更适合承担任务规划、语言组织和报告表达工作。"
         "这种架构兼顾了生成式 AI 的交互性和会计分析对准确性、谨慎性、可追溯性的要求。"
         "从问题来源看，投资者互动平台和年报文本研究共同说明：财报使用者需要的不是更多泛化文字，"
@@ -674,6 +699,20 @@ def build_report_doc() -> Path:
     )
     doc.add_heading("附录B 参考文献与资料来源", level=2)
     _add_bullets(doc, REFERENCES)
+    doc.add_heading("附录B-1 教材框架与系统模块对应关系", level=2)
+    _add_kv_table(
+        doc,
+        [
+            ("权威教材依据", TEXTBOOK_SOURCE),
+            ("偿债能力分析", "对应流动比率、速动比率、资产负债率、权益乘数等指标计算与风险提示。"),
+            ("营运能力分析", "对应应收账款周转率、存货周转率、总资产周转率等指标计算与趋势比较。"),
+            ("盈利能力分析", "对应毛利率、净利率、ROA、ROE 等指标计算和盈利质量解释。"),
+            ("成长能力分析", "对应营业收入增长率、净利润增长率等指标计算和变动说明。"),
+            ("现金流量质量分析", "对应净利润现金含量、销售收现比率、利润现金流匹配性分析。"),
+            ("杜邦分析", "对应 ROE 分解、总资产周转率、净利率和权益乘数的结构化解释。"),
+            ("Agent 工具链转化", "教材框架决定分析顺序和指标口径；Python 工具负责计算，大模型负责调度和报告表达。"),
+        ],
+    )
     doc.add_heading("附录C LLM/Agent 使用说明", level=2)
     doc.add_paragraph(
         "本项目在开发和运行过程中使用大模型辅助完成代码生成、报告文本组织、Prompt 设计和错误排查。"
@@ -720,6 +759,8 @@ def build_notebook() -> Path:
                 "## 1. 研究问题\\n",
                 "\\n",
                 "本项目研究如何构建一个会计垂直 Agent，使其能够读取上市公司年报或标准财务数据，自动完成数据校验、指标计算、风险识别和报告生成。\\n",
+                "\\n",
+                f"初步 Agent 分析流程以{TEXTBOOK_SOURCE}为权威教材依据，将教材中的偿债能力、营运能力、盈利能力、成长能力、现金流量质量和杜邦分析框架转化为可调用工具链。\\n",
                 "\\n",
                 "问题来源于真实资本市场中的财报解读需求：深交所互动易、上证 e 互动、全景路演等平台上，投资者经常围绕经营现金流、应收账款、坏账准备、收入确认、资产负债率和财务指标变动原因向上市公司追问。相关文献也表明，年报可读性、文本复杂性和信息处理成本会影响投资者理解和风险识别。因此，本项目重点解决年报信息处理成本高、指标口径整理难、风险识别证据链弱和大模型直接生成财报结论容易幻觉的问题。\\n",
                 "\\n",
@@ -892,6 +933,16 @@ def build_notebook() -> Path:
                 f"- 徐北辰：{TEAM_MEMBERS[0]['reflection']}\\n",
                 f"- 周亦轩：{TEAM_MEMBERS[1]['reflection']}\\n",
                 "\\n",
+                "### 教材框架与 Agent 流程对应\\n",
+                "\\n",
+                f"- 权威教材依据：{TEXTBOOK_SOURCE}\\n",
+                "- 偿债能力分析：流动比率、速动比率、资产负债率、权益乘数。\\n",
+                "- 营运能力分析：应收账款周转率、存货周转率、总资产周转率。\\n",
+                "- 盈利能力分析：毛利率、净利率、ROA、ROE。\\n",
+                "- 成长能力分析：营业收入增长率、净利润增长率。\\n",
+                "- 现金流量质量分析：净利润现金含量、销售收现比率、利润现金流匹配性。\\n",
+                "- 杜邦分析：ROE 分解、总资产周转率、净利率和权益乘数。\\n",
+                "\\n",
                 "### 参考文献与资料\\n",
                 "\\n",
                 *[f"- {ref}\\n" for ref in REFERENCES],
@@ -928,6 +979,7 @@ def write_markdown_files() -> list[Path]:
 
 - 如老师要求，可补充系统运行截图或课堂演示截图。
 - 课程报告已补充投资者互动平台案例、经管期刊文献、智能财经平台应用对比和本项目解决路径。
+- 课程报告已明确初步 Agent 分析流程来自权威教材《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》，并补充教材框架与系统模块对应关系。
 - 项目已发布 GitHub 仓库并完成 Streamlit Cloud 在线部署，在线演示地址：{deployment_url}
 - `final_submission/evidence/科大讯飞2025年报案例/` 已保存真实年报读取证据，包括标准 CSV、抽取审计 JSON、指标表、数据校验表、Agent trace 和真实案例 Word 报告。
 - `final_submission/evidence/运行输出样例/` 已保存指标表、校验表、图表 HTML、分析报告和 Agent trace。
@@ -1009,6 +1061,7 @@ streamlit run app.py
 
 - [x] 已填写所有姓名、学号、班级、日期。
 - [x] 已填写小组贡献情况和贡献比例。
+- [x] 已说明 Agent 初步分析流程以权威财务报表分析教材为依据，而不是任意技术拼接。
 - [x] 已补充投资者互动平台、经管期刊文献和行业 AI 财经平台资料。
 - [x] 已使用科大讯飞 2025 年年度报告完成真实 PDF 年报读取验证。
 - [x] 已将真实年报抽取 CSV、审计 JSON、指标表、校验表和 Agent trace 放入提交包。

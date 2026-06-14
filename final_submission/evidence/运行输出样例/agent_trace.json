@@ -26,7 +26,7 @@
     "input_summary": "data/sample_financial_data.xlsx",
     "output_summary": "读取 15 行、4 列。",
     "status": "完成",
-    "elapsed_seconds": 0.256,
+    "elapsed_seconds": 0.075,
     "error": ""
   },
   {
@@ -56,7 +56,7 @@
     "input_summary": "核心科目 + 资产负债表等式 + 利润现金流匹配",
     "output_summary": "数据校验完成：通过 10 项，关注 0 项，异常 0 项。",
     "status": "完成",
-    "elapsed_seconds": 0.008,
+    "elapsed_seconds": 0.006,
     "error": ""
   },
   {
@@ -66,7 +66,7 @@
     "input_summary": "偿债、营运、盈利、成长、现金流量质量",
     "output_summary": "生成 54 条指标记录。",
     "status": "完成",
-    "elapsed_seconds": 0.008,
+    "elapsed_seconds": 0.005,
     "error": ""
   },
   {
@@ -86,7 +86,7 @@
     "input_summary": "净资产收益率（ROE）= 净利率 × 总资产周转率 × 权益乘数",
     "output_summary": "2023 年至 2024 年净资产收益率（ROE）下降，变化主要受权益乘数影响。",
     "status": "完成",
-    "elapsed_seconds": 0.002,
+    "elapsed_seconds": 0.001,
     "error": ""
   },
   {
@@ -106,7 +106,7 @@
     "input_summary": "教材规则库 + 内置规则",
     "output_summary": "触发 8 条风险提示。",
     "status": "完成",
-    "elapsed_seconds": 0.008,
+    "elapsed_seconds": 0.007,
     "error": ""
   },
   {
@@ -116,7 +116,7 @@
     "input_summary": "趋势图、杜邦图、风险分布图",
     "output_summary": "保存 5 个图表 HTML。",
     "status": "完成",
-    "elapsed_seconds": 0.202,
+    "elapsed_seconds": 0.177,
     "error": ""
   },
   {

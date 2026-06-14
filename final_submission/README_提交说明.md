@@ -4,6 +4,7 @@
 
 - 如老师要求，可补充系统运行截图或课堂演示截图。
 - 课程报告已补充投资者互动平台案例、经管期刊文献、智能财经平台应用对比和本项目解决路径。
+- 课程报告已明确初步 Agent 分析流程来自权威教材《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》，并补充教材框架与系统模块对应关系。
 - 项目已发布 GitHub 仓库并完成 Streamlit Cloud 在线部署，在线演示地址：https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/
 - `final_submission/evidence/科大讯飞2025年报案例/` 已保存真实年报读取证据，包括标准 CSV、抽取审计 JSON、指标表、数据校验表、Agent trace 和真实案例 Word 报告。
 - `final_submission/evidence/运行输出样例/` 已保存指标表、校验表、图表 HTML、分析报告和 Agent trace。
