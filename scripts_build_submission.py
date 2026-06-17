@@ -17,6 +17,11 @@ SUBMISSION_DATE = "2026年6月12日"
 DEPLOYMENT_URL = "https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/"
 GITHUB_URL = "https://github.com/qujwnqiaudnqiwoud/accounting-agent"
 TEXTBOOK_SOURCE = "张新民、钱爱民《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》"
+OFFICIAL_TOPIC = "选题二：智能体会计场景应用案例"
+TOPIC_ALIGNMENT = (
+    "对应新版课程指南中“将主流财务报表分析教材的分析框架自动化、智能化，"
+    "输入年度财务报告及必要结构化数据，自动输出标准化分析报告”的选题二示例路径。"
+)
 
 TEAM_MEMBERS = [
     {
@@ -88,6 +93,32 @@ INDUSTRY_EVIDENCE = [
     "弈 Chat、同花顺问财、Wind Alice、Choice 妙想 AI 等产品体现了财经问答、智能投研和文档精读正在进入实际业务场景。",
     "Datayes AI 开放平台面向 AI Agent 提供金融数据接口，强调让智能体用对数据、查到原文并生成可追溯答案。",
     "这些平台说明市场已经在用 AI 降低投研和财报处理成本；本项目的定位则是面向课程场景，提供本地可运行、计算可复核、过程可追踪的会计垂直 Agent。"
+]
+
+SCORING_ALIGNMENT = [
+    (
+        "1. 会计专业价值",
+        "项目从投资者互动平台、年报可读性和信息处理成本文献中识别财报解读痛点，"
+        f"再以{TEXTBOOK_SOURCE}为专业框架，把偿债、营运、盈利、成长、现金流量质量和杜邦分析流程自动化。"
+        "该设计直接服务财报分析、投资者理解和审慎风险识别，具有明确会计/财务/审计场景价值。"
+    ),
+    (
+        "2. 技术创新与性能",
+        "系统采用“确定性 Python 工具 + smolagents/大模型调度与报告表达”的组合，支持 PDF/Word 年报抽取、"
+        "标准 CSV 生成、动态 Agent trace、API 配置和 fallback pipeline。真实科大讯飞年报验证扫描 301 页，"
+        "核心科目覆盖率 100%，降低模型直接生成财务数字的幻觉风险。"
+    ),
+    (
+        "3. 工程规范与文档",
+        "项目结构包含 app.py、agents/、tools/、schemas/、config/、knowledge/、tests/、notebooks/ 和 final_submission/。"
+        "README 提供环境配置、运行步骤和输出说明；Jupyter Notebook 作为主代码说明文档，.py 文件作为工程实现；"
+        "pytest 覆盖关键模块并保留 Word 渲染预览证据。"
+    ),
+    (
+        "4. 汇报表现与迭代",
+        "最终材料已吸收新版课程指南要求，补充官方选题表述、教材框架来源、评分维度对应、在线部署说明和海报生成 prompt。"
+        "项目已发布 GitHub 并部署到 Streamlit Cloud，可用于课堂实时演示、交互测试和展示 Agent 调用过程。"
+    ),
 ]
 
 REFERENCES = [
@@ -342,12 +373,13 @@ def build_topic_doc() -> Path:
     doc = Document(TEMPLATE_DIR / "张三-李四-作业题目.docx")
     _clear_doc(doc)
     _set_normal_style(doc)
-    _add_title(doc, "《生成式AI会计前沿》课程作业题目说明", "财报智析 Agent：基于年报读取与确定性指标计算的会计垂直智能体")
+    _add_title(doc, "《生成式AI会计前沿》课程作业题目说明", "财报智析 Agent：基于教材框架自动化的智能体会计场景应用案例")
     _add_kv_table(
         doc,
         [
             ("课程名称", "生成式AI会计前沿"),
-            ("选题编号", "选题二：会计垂直领域智能体（Agent）"),
+            ("选题编号", OFFICIAL_TOPIC),
+            ("选题定位", TOPIC_ALIGNMENT),
             ("项目名称", "财报智析 Agent"),
             ("小组成员", "；".join(_member_line(member) for member in TEAM_MEMBERS)),
             ("组长", _member_line(TEAM_MEMBERS[0])),
@@ -367,6 +399,7 @@ def build_topic_doc() -> Path:
         "并进一步完成指标计算、趋势分析、杜邦分析、现金流量质量分析、风险识别和标准化报告生成。"
         f"其中，初步 Agent 分析流程不是主观拼接，而是以{TEXTBOOK_SOURCE}中的偿债能力、营运能力、盈利能力、"
         "成长能力、现金流量质量分析和杜邦分析等经典财务报表分析框架为依据，再将其转化为可调用的工具链。"
+        f"{TOPIC_ALIGNMENT}"
         "项目已完成 GitHub 仓库发布和 Streamlit Cloud 在线部署，形成可在线访问、可课堂演示、可复现实验的初步应用形态。"
     )
     doc.add_paragraph(
@@ -423,7 +456,9 @@ def build_topic_doc() -> Path:
         "公网部署还使教师或同学可以在不进入本地开发环境的情况下查看系统界面和交互流程。"
         "同时，API Key 不写入代码和仓库，可通过网页侧边栏或 Streamlit Cloud Secrets 等方式配置，体现了基本的工程安全意识。"
     )
-    doc.add_heading("6. 作业承诺", level=1)
+    doc.add_heading("6. 新版评分维度对应", level=1)
+    _add_kv_table(doc, SCORING_ALIGNMENT)
+    doc.add_heading("7. 作业承诺", level=1)
     doc.add_paragraph("本项目作业参考文献和 LLM/Agent 使用情况见课程报告附录。")
     doc.add_paragraph(f"本项目由徐北辰、周亦轩共同完成，贡献比例为徐北辰 60%、周亦轩 40%。")
     out = OUT_DIR / "财报智析Agent_作业题目说明.docx"
@@ -436,13 +471,15 @@ def build_report_doc() -> Path:
     doc = Document(TEMPLATE_DIR / "课程报告模板-非Jupyter版本.docx")
     _clear_doc(doc)
     _set_normal_style(doc)
-    _add_title(doc, "《生成式AI会计前沿》课程报告", "财报智析 Agent：面向上市公司年报的会计垂直智能体")
+    _add_title(doc, "《生成式AI会计前沿》课程报告", "财报智析 Agent：基于教材框架自动化的智能体会计场景应用案例")
     doc.add_paragraph("山东财经大学会计学院制").alignment = WD_ALIGN_PARAGRAPH.CENTER
     doc.add_paragraph("二〇二六年六月").alignment = WD_ALIGN_PARAGRAPH.CENTER
     _add_kv_table(
         doc,
         [
             ("小组成员", "；".join(_member_line(member) for member in TEAM_MEMBERS)),
+            ("选题编号", OFFICIAL_TOPIC),
+            ("选题定位", TOPIC_ALIGNMENT),
             ("组长", _member_line(TEAM_MEMBERS[0])),
             ("贡献比例", "徐北辰 60%；周亦轩 40%"),
             ("提交日期", SUBMISSION_DATE),
@@ -452,7 +489,7 @@ def build_report_doc() -> Path:
     )
 
     doc.add_heading("报告题目", level=1)
-    doc.add_paragraph("财报智析 Agent：基于年报读取、确定性财务指标计算与大模型报告生成的会计垂直智能体")
+    doc.add_paragraph("财报智析 Agent：基于年报读取、教材框架自动化与大模型报告生成的智能体会计场景应用案例")
 
     doc.add_heading("摘要", level=1)
     doc.add_paragraph(
@@ -465,6 +502,7 @@ def build_report_doc() -> Path:
         f"需要特别说明的是，系统初步分析流程以{TEXTBOOK_SOURCE}为权威教材依据，"
         "将教材中的偿债能力、营运能力、盈利能力、成长能力、现金流量质量和杜邦分析框架转化为 Agent 可调用的工具链，"
         "因此该流程不是单纯技术拼装，而是会计专业分析框架的程序化实现。"
+        f"本项目也与新版课程指南中的{OFFICIAL_TOPIC}直接对应，{TOPIC_ALIGNMENT}"
         "项目采用“确定性计算 + 大模型解释”的架构：财务数字、指标公式、风险触发均由 Python 工具生成，"
         "大模型仅用于工具链规划、解释组织和报告润色，从而降低财务分析中的幻觉风险。"
         "在工程交付层面，项目已发布 GitHub 仓库并部署至 Streamlit Cloud，形成可在线访问和课堂展示的演示入口，"
@@ -555,6 +593,16 @@ def build_report_doc() -> Path:
     doc.add_paragraph(
         "因此，Agent 在本项目中并不是替代会计专业判断的黑箱聊天工具，而是把权威教材中的分析框架、指标口径和报告逻辑工程化。"
         "大模型负责调度和表达，核心财务分析框架仍来自教材和确定性工具。"
+    )
+    doc.add_heading("1.7 故事逻辑与解决路径", level=2)
+    doc.add_paragraph(
+        "本报告按“发现问题—建立依据—构建系统—验证应用—回应问题”的逻辑展开。"
+        "第一步，通过投资者互动平台、上市公司年报阅读场景和经管文献发现现实问题：财报使用者面对长篇年报时，"
+        "存在数据抽取成本高、指标口径不统一、财务风险识别缺少可追溯证据、大模型直接分析容易产生幻觉等痛点。"
+        "第二步，使用权威财务报表分析教材确定专业分析框架，把传统教材中的偿债、营运、盈利、成长、现金流量质量和杜邦分析转化为 Agent 工作流。"
+        "第三步，构建财报智析 Agent 和 Streamlit 前端网页，实现年报读取、标准 CSV 生成、指标计算、风险识别、图表展示、报告输出和动态 trace。"
+        "第四步，通过科大讯飞 2025 年年度报告、样例数据、pytest 测试和公网部署验证可用性。"
+        "最终，系统以可复核的指标表、风险说明、Agent trace 和 Word 报告回应最初发现的财报理解问题。"
     )
 
     doc.add_heading("2. 实验设计", level=1)
@@ -662,6 +710,8 @@ def build_report_doc() -> Path:
             "真实企业年报格式复杂，自动抽取结果仍需在分析前由用户核对。",
         ],
     )
+    doc.add_heading("3.7 新版评分维度对应表", level=2)
+    _add_kv_table(doc, SCORING_ALIGNMENT)
 
     doc.add_heading("4. 研究结论与心得", level=1)
     doc.add_heading("4.1 研究结论", level=2)
@@ -749,7 +799,11 @@ def build_notebook() -> Path:
                 "\\n",
                 "作者：徐北辰（202408240218，24级智能会计班）；周亦轩（202408240302，24级智能会计班）\\n",
                 "\\n",
-                "本 Notebook 用于展示项目运行逻辑、核心代码调用和输出结果，并附小组分工、参考资料与独立完成声明。\\n",
+                f"选题编号：{OFFICIAL_TOPIC}\\n",
+                "\\n",
+                f"选题定位：{TOPIC_ALIGNMENT}\\n",
+                "\\n",
+                "本 Notebook 是本项目的主要代码说明文档，用于展示项目运行逻辑、核心代码调用和输出结果；app.py、agents/、tools/、config/ 等 .py 文件作为完整工程实现代码。\\n",
             ],
         },
         {
@@ -759,6 +813,8 @@ def build_notebook() -> Path:
                 "## 1. 研究问题\\n",
                 "\\n",
                 "本项目研究如何构建一个会计垂直 Agent，使其能够读取上市公司年报或标准财务数据，自动完成数据校验、指标计算、风险识别和报告生成。\\n",
+                "\\n",
+                f"{TOPIC_ALIGNMENT}\\n",
                 "\\n",
                 f"初步 Agent 分析流程以{TEXTBOOK_SOURCE}为权威教材依据，将教材中的偿债能力、营运能力、盈利能力、成长能力、现金流量质量和杜邦分析框架转化为可调用工具链。\\n",
                 "\\n",
@@ -919,7 +975,18 @@ def build_notebook() -> Path:
             "cell_type": "markdown",
             "metadata": {},
             "source": [
-                "## 10. 附录：小组贡献、参考文献与声明\\n",
+                "## 10. 新版评分维度对应\\n",
+                "\\n",
+                "| 评分维度 | 本项目对应证据 |\\n",
+                "|---|---|\\n",
+                *[f"| {name} | {desc} |\\n" for name, desc in SCORING_ALIGNMENT],
+            ],
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## 11. 附录：小组贡献、参考文献与声明\\n",
                 "\\n",
                 "### 小组贡献说明\\n",
                 "\\n",
@@ -953,7 +1020,8 @@ def build_notebook() -> Path:
             ],
         },
     ]
-    for cell in cells:
+    for idx, cell in enumerate(cells):
+        cell.setdefault("id", f"cell-{idx:02d}")
         if "source" in cell:
             cell["source"] = [part.replace("\\n", "\n") for part in cell["source"]]
     notebook = {
@@ -977,10 +1045,13 @@ def write_markdown_files() -> list[Path]:
 
 ## 提交前可选补充
 
+- 选题编号统一为“选题二：智能体会计场景应用案例”，对应新版课程指南中“将主流财务报表分析教材的分析框架自动化、智能化，输入年度财务报告及必要结构化数据，自动输出标准化分析报告”的示例路径。
 - 如老师要求，可补充系统运行截图或课堂演示截图。
 - 课程报告已补充投资者互动平台案例、经管期刊文献、智能财经平台应用对比和本项目解决路径。
 - 课程报告已明确初步 Agent 分析流程来自权威教材《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》，并补充教材框架与系统模块对应关系。
+- 课程报告、题目说明和 Notebook 均已补充新版评分维度对应表。
 - 项目已发布 GitHub 仓库并完成 Streamlit Cloud 在线部署，在线演示地址：{deployment_url}
+- `小组海报生成Prompt.md` 可直接用于 AI 生成 1080×1920 竖版小组海报。
 - `final_submission/evidence/科大讯飞2025年报案例/` 已保存真实年报读取证据，包括标准 CSV、抽取审计 JSON、指标表、数据校验表、Agent trace 和真实案例 Word 报告。
 - `final_submission/evidence/运行输出样例/` 已保存指标表、校验表、图表 HTML、分析报告和 Agent trace。
 - `final_submission/evidence/文档渲染预览/` 保存 Word 文档渲染后的 PDF、HTML 和页面总览 PNG。
@@ -1036,6 +1107,7 @@ streamlit run app.py
 - `财报智析Agent_课程报告.docx`
 - `财报智析Agent_作业题目说明.docx`
 - `财报智析Agent_项目说明_Notebook.ipynb`
+- `小组海报生成Prompt.md`
 - `README_提交说明.md`
 - `evidence/科大讯飞2025年报案例/`
 - `evidence/运行输出样例/`
@@ -1061,6 +1133,9 @@ streamlit run app.py
 
 - [x] 已填写所有姓名、学号、班级、日期。
 - [x] 已填写小组贡献情况和贡献比例。
+- [x] 已将选题表述统一为新版“选题二：智能体会计场景应用案例”。
+- [x] 已在报告、题目说明和 Notebook 中加入新版评分维度对应表。
+- [x] 已单独生成小组海报 AI 生成 Prompt。
 - [x] 已说明 Agent 初步分析流程以权威财务报表分析教材为依据，而不是任意技术拼接。
 - [x] 已补充投资者互动平台、经管期刊文献和行业 AI 财经平台资料。
 - [x] 已使用科大讯飞 2025 年年度报告完成真实 PDF 年报读取验证。
@@ -1100,6 +1175,7 @@ streamlit run app.py
     ├── 财报智析Agent_课程报告.docx
     ├── 财报智析Agent_作业题目说明.docx
     ├── 财报智析Agent_项目说明_Notebook.ipynb
+    ├── 小组海报生成Prompt.md
     ├── evidence/
     ├── README_提交说明.md
     ├── 提交文件清单.md
@@ -1108,7 +1184,57 @@ streamlit run app.py
 """,
         encoding="utf-8",
     )
-    return [readme, checklist, packaging]
+    poster_prompt = OUT_DIR / "小组海报生成Prompt.md"
+    poster_prompt.write_text(
+        f"""# 小组海报生成 Prompt
+
+用途：生成《生成式AI会计前沿》课程期末小组作业海报。
+
+## 画布与输出
+
+- 画布：1080 × 1920 px，9:16 竖版。
+- 输出格式：PNG。
+- 版式：上方标题区，中间核心方案区，下方组员信息区。
+- 风格：墨绿、浅金、白灰，专业、金融科技、会计智能体风格；避免卡通化和过度科幻。
+
+## 海报标题
+
+主标题：财报智析 Agent
+
+副标题：基于权威财务报表分析教材框架的智能体会计场景应用案例
+
+选题编号：{OFFICIAL_TOPIC}
+
+## 中间核心内容
+
+请用清晰的信息图方式表现以下逻辑链：
+
+1. 问题发现：投资者互动平台和经管文献显示，年报信息处理成本高、财务指标口径整理难、投资者理解差异大、风险识别证据链弱。
+2. 教材到工作流：将《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》中的偿债能力、营运能力、盈利能力、成长能力、现金流量质量、杜邦分析转化为 Agent 工具链。
+3. 系统能力：上传年报 PDF/Word 或 Excel/CSV → 生成标准 CSV → 指标计算 → 风险识别 → Agent trace → Word/Markdown 分析报告。
+4. 应用落地：Streamlit 前端、GitHub 仓库、Streamlit Cloud 公网部署，形成从 Agent 构建到初步应用的完整闭环。
+
+## 视觉元素
+
+- 年度报告文档、标准财务数据表、指标仪表盘、风险提示卡片、Agent 节点流程图、云端部署图标。
+- 中间可以放一条从“年报读取”到“标准报告”的流程箭头。
+- 强调“确定性 Python 指标计算 + 大模型辅助解释 + trace 可追溯”。
+
+## 下方组员信息
+
+- 徐北辰 202408240218 24级智能会计班 组长 贡献比例 60%
+- 周亦轩 202408240302 24级智能会计班 组员 贡献比例 40%
+
+## 禁止事项
+
+- 不要写“保证投资收益”“审计结论”“发现违规”“财务造假”等绝对化或不恰当表述。
+- 不要使用真实公司 Logo。
+- 不要让文字太小；手机单屏查看也要清楚。
+- 不要堆砌无关 AI 术语，重点突出会计专业价值和课程项目应用闭环。
+""",
+        encoding="utf-8",
+    )
+    return [readme, checklist, packaging, poster_prompt]
 
 
 def main() -> None:

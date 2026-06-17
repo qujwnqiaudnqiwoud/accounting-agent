@@ -2,6 +2,10 @@
 
 “财报智析 Agent：基于 smolagents 的上市公司财务报表智能分析系统”是《生成式AI会计前沿》课程期末项目。系统把权威教材张新民、钱爱民《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》中的财务报表分析框架转化为可调用的 Agent 工具链，支持从年度报告 PDF/Word 抽取财务数据并生成标准 CSV，也支持直接读取标准 Excel/CSV，随后完成偿债能力、营运能力、盈利能力、成长能力、现金流量质量、杜邦分析、风险识别、图表展示和标准化报告生成。
 
+选题编号：选题二：智能体会计场景应用案例。
+
+选题定位：对应新版课程指南中“将主流财务报表分析教材的分析框架自动化、智能化，输入年度财务报告及必要结构化数据，自动输出标准化分析报告”的示例路径。
+
 在线演示地址：[https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/](https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/)
 
 GitHub 仓库：[https://github.com/qujwnqiaudnqiwoud/accounting-agent](https://github.com/qujwnqiaudnqiwoud/accounting-agent)
@@ -176,7 +180,18 @@ export FIN_AGENT_REPORT_MAX_PAGES=300
 - `notebooks/demo.ipynb`
 - `tests/`
 - `README.md`、`requirements.txt`、`run_app.sh`
-- `final_submission/` 中的课程报告、题目说明、提交清单和附录材料
+- `final_submission/` 中的课程报告、题目说明、Notebook、提交清单、小组海报生成 Prompt 和附录材料
+
+按新版要求，`final_submission/财报智析Agent_项目说明_Notebook.ipynb` 是主要代码说明文件，用于展示项目逻辑、运行路径和关键输出；`.py` 文件是完整工程实现，用于运行 Streamlit 页面和 Agent 工具链。
+
+## 新版评分维度对应
+
+| 评分维度 | 本项目对应证据 |
+|---|---|
+| 会计专业价值 | 从投资者互动平台、年报可读性和信息处理成本文献中识别财报解读痛点，并以权威教材框架构建偿债、营运、盈利、成长、现金流量质量和杜邦分析流程。 |
+| 技术创新与性能 | 采用确定性 Python 指标计算与大模型 Agent 调度/报告生成结合，支持 PDF/Word 年报抽取、标准 CSV 转换、API 配置、fallback pipeline 和 Agent trace。 |
+| 工程规范与文档 | 项目包含 Streamlit 应用、模块化工具链、配置文件、知识库、测试、Notebook、README、课程报告、题目说明和提交清单，可本地复现。 |
+| 汇报表现与迭代 | 已根据新版指南统一选题表述、补充评分对应表和小组海报 Prompt，并完成 GitHub 发布与 Streamlit Cloud 公网部署。 |
 
 建议排除：`.venv/`、`__pycache__/`、`.pytest_cache/`、`.DS_Store`、`outputs/uploads/`、运行中生成的大体积临时文件。
 

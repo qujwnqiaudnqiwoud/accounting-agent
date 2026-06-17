@@ -33,7 +33,7 @@ def _should_skip(path: Path) -> bool:
     name = path.name
     if name in {".DS_Store"}:
         return True
-    if parts & {"__pycache__", ".pytest_cache", ".venv", "outputs"}:
+    if parts & {"__pycache__", ".pytest_cache", ".venv", "outputs", ".ipynb_checkpoints"}:
         return True
     if path.as_posix() == "config/model_config.yaml":
         return True
@@ -63,12 +63,13 @@ def _iter_files(root: Path):
 
 
 def build_zip(leader_name: str) -> Path:
-    zip_path = PROJECT_DIR / f"选题二_财报智析Agent_{leader_name}.zip"
+    root_name = f"选题二_财报智析Agent_{leader_name}"
+    zip_path = PROJECT_DIR / f"{root_name}.zip"
     if zip_path.exists():
         zip_path.unlink()
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
         for file_path, rel in _iter_files(PROJECT_DIR):
-            zf.write(file_path, rel.as_posix())
+            zf.write(file_path, f"{root_name}/{rel.as_posix()}")
     return zip_path
 
 

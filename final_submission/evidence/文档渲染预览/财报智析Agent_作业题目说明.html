@@ -47,10 +47,10 @@ th {
   font-weight: bold;
 }
 </style></head><body><p class="center"><strong>《生成式AI会计前沿》课程作业题目说明</strong></p>
-<p class="center">财报智析 Agent：基于年报读取与确定性指标计算的会计垂直智能体</p>
-<table><tr><th>项目</th><th>内容</th></tr><tr><td>课程名称</td><td>生成式AI会计前沿</td></tr><tr><td>选题编号</td><td>选题二：会计垂直领域智能体（Agent）</td></tr><tr><td>项目名称</td><td>财报智析 Agent</td></tr><tr><td>小组成员</td><td>徐北辰 202408240218 24级智能会计班；周亦轩 202408240302 24级智能会计班</td></tr><tr><td>组长</td><td>徐北辰 202408240218 24级智能会计班</td></tr><tr><td>提交日期</td><td>2026年6月12日</td></tr><tr><td>运行环境</td><td>Python 3.11；Streamlit；pandas；smolagents；OpenAI-compatible API；pdfplumber；PyMuPDF；python-docx</td></tr><tr><td>在线演示地址</td><td>https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/</td></tr><tr><td>GitHub 仓库</td><td>https://github.com/qujwnqiaudnqiwoud/accounting-agent</td></tr></table>
+<p class="center">财报智析 Agent：基于教材框架自动化的智能体会计场景应用案例</p>
+<table><tr><th>项目</th><th>内容</th></tr><tr><td>课程名称</td><td>生成式AI会计前沿</td></tr><tr><td>选题编号</td><td>选题二：智能体会计场景应用案例</td></tr><tr><td>选题定位</td><td>对应新版课程指南中“将主流财务报表分析教材的分析框架自动化、智能化，输入年度财务报告及必要结构化数据，自动输出标准化分析报告”的选题二示例路径。</td></tr><tr><td>项目名称</td><td>财报智析 Agent</td></tr><tr><td>小组成员</td><td>徐北辰 202408240218 24级智能会计班；周亦轩 202408240302 24级智能会计班</td></tr><tr><td>组长</td><td>徐北辰 202408240218 24级智能会计班</td></tr><tr><td>提交日期</td><td>2026年6月12日</td></tr><tr><td>运行环境</td><td>Python 3.11；Streamlit；pandas；smolagents；OpenAI-compatible API；pdfplumber；PyMuPDF；python-docx</td></tr><tr><td>在线演示地址</td><td>https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/</td></tr><tr><td>GitHub 仓库</td><td>https://github.com/qujwnqiaudnqiwoud/accounting-agent</td></tr></table>
 <h1>1. 研究问题</h1>
-<p>本项目切入的不是一般聊天机器人问题，而是会计、财务和审计场景中的财务报告解读问题。从深交所互动易、上证 e 互动、全景路演等投资者互动平台可以看到，投资者经常围绕年报中的经营现金流、应收账款、坏账准备、收入确认和资产负债率等指标向上市公司追问，说明年报数字到财务判断之间仍存在明显的信息处理成本。上市公司年度报告篇幅长、表格结构复杂，普通用户往往难以快速把 PDF/Word 年报转换为可分析的标准财务数据。本项目研究如何构建一个会计垂直领域 Agent，使其能够读取年报或标准 Excel/CSV，生成标准化数据，并进一步完成指标计算、趋势分析、杜邦分析、现金流量质量分析、风险识别和标准化报告生成。其中，初步 Agent 分析流程不是主观拼接，而是以张新民、钱爱民《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》中的偿债能力、营运能力、盈利能力、成长能力、现金流量质量分析和杜邦分析等经典财务报表分析框架为依据，再将其转化为可调用的工具链。项目已完成 GitHub 仓库发布和 Streamlit Cloud 在线部署，形成可在线访问、可课堂演示、可复现实验的初步应用形态。</p>
+<p>本项目切入的不是一般聊天机器人问题，而是会计、财务和审计场景中的财务报告解读问题。从深交所互动易、上证 e 互动、全景路演等投资者互动平台可以看到，投资者经常围绕年报中的经营现金流、应收账款、坏账准备、收入确认和资产负债率等指标向上市公司追问，说明年报数字到财务判断之间仍存在明显的信息处理成本。上市公司年度报告篇幅长、表格结构复杂，普通用户往往难以快速把 PDF/Word 年报转换为可分析的标准财务数据。本项目研究如何构建一个会计垂直领域 Agent，使其能够读取年报或标准 Excel/CSV，生成标准化数据，并进一步完成指标计算、趋势分析、杜邦分析、现金流量质量分析、风险识别和标准化报告生成。其中，初步 Agent 分析流程不是主观拼接，而是以张新民、钱爱民《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》中的偿债能力、营运能力、盈利能力、成长能力、现金流量质量分析和杜邦分析等经典财务报表分析框架为依据，再将其转化为可调用的工具链。对应新版课程指南中“将主流财务报表分析教材的分析框架自动化、智能化，输入年度财务报告及必要结构化数据，自动输出标准化分析报告”的选题二示例路径。项目已完成 GitHub 仓库发布和 Streamlit Cloud 在线部署，形成可在线访问、可课堂演示、可复现实验的初步应用形态。</p>
 <p>具体而言，圣泉集团投资者关系活动中曾出现投资者依据经营净现金流与净利润比值追问盈利质量的案例；《网络平台互动与股票异质性风险》《整合信息披露、信息处理成本与投资意愿》《中文年报可读性：衡量与检验》等文献也说明，投资者信息处理能力、年报可读性和信息呈现方式会影响财报理解。现实应用层面，CSMAR、同花顺问财、Wind Alice、Choice 和 Datayes AI 开放平台等已经出现智能财经问答、财报分析、风险诊断或金融 Agent 数据接口实践，本项目则把这些方向转化为可复现的课程级会计 Agent。</p>
 <h1>2. 数据与样本</h1>
 <p>样例结构化数据：accounting-agent/data/sample_financial_data.xlsx。</p>
@@ -71,6 +71,8 @@ th {
 <h1>5. 在线部署与初步应用</h1>
 <p>本项目已发布 GitHub 仓库（https://github.com/qujwnqiaudnqiwoud/accounting-agent），并完成 Streamlit Cloud 在线部署，访问地址为：https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/。这说明系统不再只是本地运行的代码 Demo，而是具备了在线访问、交互测试和课堂展示能力。从课程作业角度看，该部署过程体现了从会计问题识别、Agent 架构搭建、API 接入、前端交互、测试验证到公网演示的完整实践链条。</p>
 <p>公网部署还使教师或同学可以在不进入本地开发环境的情况下查看系统界面和交互流程。同时，API Key 不写入代码和仓库，可通过网页侧边栏或 Streamlit Cloud Secrets 等方式配置，体现了基本的工程安全意识。</p>
-<h1>6. 作业承诺</h1>
+<h1>6. 新版评分维度对应</h1>
+<table><tr><th>项目</th><th>内容</th></tr><tr><td>1. 会计专业价值</td><td>项目从投资者互动平台、年报可读性和信息处理成本文献中识别财报解读痛点，再以张新民、钱爱民《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》为专业框架，把偿债、营运、盈利、成长、现金流量质量和杜邦分析流程自动化。该设计直接服务财报分析、投资者理解和审慎风险识别，具有明确会计/财务/审计场景价值。</td></tr><tr><td>2. 技术创新与性能</td><td>系统采用“确定性 Python 工具 + smolagents/大模型调度与报告表达”的组合，支持 PDF/Word 年报抽取、标准 CSV 生成、动态 Agent trace、API 配置和 fallback pipeline。真实科大讯飞年报验证扫描 301 页，核心科目覆盖率 100%，降低模型直接生成财务数字的幻觉风险。</td></tr><tr><td>3. 工程规范与文档</td><td>项目结构包含 app.py、agents/、tools/、schemas/、config/、knowledge/、tests/、notebooks/ 和 final_submission/。README 提供环境配置、运行步骤和输出说明；Jupyter Notebook 作为主代码说明文档，.py 文件作为工程实现；pytest 覆盖关键模块并保留 Word 渲染预览证据。</td></tr><tr><td>4. 汇报表现与迭代</td><td>最终材料已吸收新版课程指南要求，补充官方选题表述、教材框架来源、评分维度对应、在线部署说明和海报生成 prompt。项目已发布 GitHub 并部署到 Streamlit Cloud，可用于课堂实时演示、交互测试和展示 Agent 调用过程。</td></tr></table>
+<h1>7. 作业承诺</h1>
 <p>本项目作业参考文献和 LLM/Agent 使用情况见课程报告附录。</p>
 <p>本项目由徐北辰、周亦轩共同完成，贡献比例为徐北辰 60%、周亦轩 40%。</p></body></html>

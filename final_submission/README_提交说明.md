@@ -2,10 +2,13 @@
 
 ## 提交前可选补充
 
+- 选题编号统一为“选题二：智能体会计场景应用案例”，对应新版课程指南中“将主流财务报表分析教材的分析框架自动化、智能化，输入年度财务报告及必要结构化数据，自动输出标准化分析报告”的示例路径。
 - 如老师要求，可补充系统运行截图或课堂演示截图。
 - 课程报告已补充投资者互动平台案例、经管期刊文献、智能财经平台应用对比和本项目解决路径。
 - 课程报告已明确初步 Agent 分析流程来自权威教材《财务报表分析（第6版·立体化数字教材版）案例分析与学习指导》，并补充教材框架与系统模块对应关系。
+- 课程报告、题目说明和 Notebook 均已补充新版评分维度对应表。
 - 项目已发布 GitHub 仓库并完成 Streamlit Cloud 在线部署，在线演示地址：https://accounting-agent-yspsw2afdlis9itfyheqde.streamlit.app/
+- `小组海报生成Prompt.md` 可直接用于 AI 生成 1080×1920 竖版小组海报。
 - `final_submission/evidence/科大讯飞2025年报案例/` 已保存真实年报读取证据，包括标准 CSV、抽取审计 JSON、指标表、数据校验表、Agent trace 和真实案例 Word 报告。
 - `final_submission/evidence/运行输出样例/` 已保存指标表、校验表、图表 HTML、分析报告和 Agent trace。
 - `final_submission/evidence/文档渲染预览/` 保存 Word 文档渲染后的 PDF、HTML 和页面总览 PNG。
